@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+    <!-- filter form -->
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <input type="text" name="search" placeholder="Search Product">
+        <select name="category">
+            <option value="#">All</option>
+            {% for collection in collections %}
+                <option value="{{ collection }}">{{ collection }}</option>
+            {% endfor %}
+        <button type="submit">Search</button>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+
+.env
+.venv
+*/.env
+*/.venv
+*/.vscode/*
+*/.idea/*
+*/.pytest_cache/*
+
+*/migrations/*
+*/__pycache__/*
+
+
+Pipfile.lock

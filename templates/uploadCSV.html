@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <h1>Upload Data</h1>
+    
+    {% if messages %}
+        <ul class="mt-3">
+            {% for message in messages %}
+            <li class="alert alert-{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form id="uploadForm" method="POST" enctype="multipart/form-data">
+        <label for="csvFile">Select a CSV file:</label>
+        {% csrf_token %}
+        <input type="text" placeholder="Select File"> 
+        <input type="file" id="csvFile" name="file" accept=".csv" > 
+
+        <br>
+
+        <button class="btn btn-primary mt-2" type="submit">Start Upload</button>
+    </form>
+
+    <div class="progress mt-3">
+        <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+    </div>
+
+{% endblock %}

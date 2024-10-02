@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Product Detail</h1>
+        <div>
+            <button> 
+                <a href="{% url 'products' %}">
+                    Back 
+                </a> 
+            </button>
+            <div class="card">
+                <h2>
+                    {{ product.title }}
+                </h2>
+                <p>{{product.unit_price}}</p>
+            </div>
+        </div>
+
+{% endblock %}
+
