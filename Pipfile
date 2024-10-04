@@ -12,6 +12,7 @@ django-environ = "*"
 psycopg2 = "*"
 celery = "*"
 redis = "*"
+django-debug-toolbar = "*"
 
 [dev-packages]
 

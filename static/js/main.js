@@ -1,5 +1,4 @@
 
-
 document.getElementById('uploadForm').onsubmit = function(e) {
     e.preventDefault();
     
@@ -36,3 +35,27 @@ document.getElementById('uploadForm').onsubmit = function(e) {
 
     xhr.send(formData);
 };
+
+
+document.querySelectorAll(".filter").forEach(function(filterElement) {
+    filterElement.addEventListener("change", () => {
+        console.log("Filter changed!");
+    });
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+   
+    const alertElements = document.querySelectorAll('.alert');
+    
+    alertElements.forEach(function (alertElement) {
+      setTimeout(function () {
+        let alert = new bootstrap.Alert(alertElement);
+        alert.close();
+      }, 2000);
+    });
+
+
+});
+

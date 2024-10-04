@@ -5,17 +5,86 @@
 
 {% block content %}
 
-
-    <!-- filter form -->
-    <form method="POST" action="{% url 'login' %}">
-        {% csrf_token %}
-        <input type="text" name="search" placeholder="Search Product">
-        <select name="category">
-            <option value="#">All</option>
-            {% for collection in collections %}
-                <option value="{{ collection }}">{{ collection }}</option>
+    {% if messages %}
+        <div class="mt-3">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
             {% endfor %}
-        <button type="submit">Search</button>
+        </div>
+    {% endif %}
+
+
+    <div> {{ count }} records found! </div>
+
+
+    <!-- filter p-3 form -->
+    <form id="queryForm" method="POST">
+        {% csrf_token %}
+        
+        <div class="d-flex flex-column">
+            <div>
+                <input type="text" class="filter p-3 col-3" name="keyword" placeholder="Keyword">
+
+                <select name="industry" class="filter p-3 col-3">
+                    <option value="None">Industry</option>
+                    {% for i in industry %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+                
+                <select name="yearFounded" class="filter p-3 col-3">
+                    <option value="None">Year Founded</option>
+                    {% for i in year_founded %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+                
+            <br>
+
+            <div>  
+                <select name="city" class="filter p-3 col-3">
+                    <option value="None">City</option>
+                    {% for i in city %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+                
+                <select name="country" class="filter p-3 col-3">
+                    <option value="None">Country</option>
+                    {% for i in country %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <br>
+
+            <div>
+                <select name="empFrom" class="filter p-3 col-3"> 
+                    <option value="None">Employees (From)</option> 
+                    {% for i in employee_from %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+                
+                <select name="empTo" class="filter p-3 col-3">
+                    <option value="None">Employees (To)</option>
+                    {% for i in employee_to %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+        </div>
+
+        <br>
+        <button id="queryBtn" class="mt-5 btn btn-primary p-3 col-3 disabled" type="submit">
+            Query Date
+        </button>
+        <button class="mt-5 mx-5 btn btn-secondary p-3 col-2" type="reset">
+            Reset
+        </button>
     </form>
 
 {% endblock %}

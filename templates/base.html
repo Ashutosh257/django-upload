@@ -1,4 +1,3 @@
-
 {% load static %}
 
 <!DOCTYPE html>
@@ -25,13 +24,18 @@
             <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'upload' %}">Upload Data</a>
+                        <a 
+                            class="nav-link {% if request.path == '/core/upload/' %}active{% endif %}" 
+                            href="{% url 'upload' %}"
+                        >
+                            Upload Data
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'query_builder' %}">Query Builder</a>
+                        <a class="nav-link {% if request.path == '/core/query-builder/' %}active{% endif %}"  href="{% url 'query_builder' %}">Query Builder</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'users' %}">Users</a>
+                        <a class="nav-link {% if request.path == '/core/users/' %}active{% endif %}" href="{% url 'users' %}">Users</a>
                     </li>
 
                 </ul>
@@ -59,6 +63,7 @@
             </div>
         </div>
     </nav>
+
 
     <div class="main-container">
 
