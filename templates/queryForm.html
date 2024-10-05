@@ -1,23 +1,26 @@
 
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block content %}
 
     {% if messages %}
-        <div class="mt-3">
+        <div id="queryRecords" class="mt-3">
             {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                <div class="alert alert-{{ message.tags }} d-flex justify-content-between align-items-center">
+                    <span class="fs-4 d-flex align-items-center mx-3 gap-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                        {{ message }}
+                    </span>
+                    <button class="btn-close" onclick="closeMessage()"> </button>
+                </div>
             {% endfor %}
         </div>
     {% endif %}
 
-
-    <div> {{ count }} records found! </div>
-
-
-    <!-- filter p-3 form -->
+    <!-- filter form -->
     <form id="queryForm" method="POST">
         {% csrf_token %}
         
@@ -32,7 +35,7 @@
                     {% endfor %}
                 </select>
                 
-                <select name="yearFounded" class="filter p-3 col-3">
+                <select name="year_founded" class="filter p-3 col-3">
                     <option value="None">Year Founded</option>
                     {% for i in year_founded %}
                     <option value="{{ i }}">{{ i }}</option>
@@ -61,14 +64,14 @@
             <br>
 
             <div>
-                <select name="empFrom" class="filter p-3 col-3"> 
+                <select name="emp_from" class="filter p-3 col-3"> 
                     <option value="None">Employees (From)</option> 
                     {% for i in employee_from %}
                     <option value="{{ i }}">{{ i }}</option>
                     {% endfor %}
                 </select>
                 
-                <select name="empTo" class="filter p-3 col-3">
+                <select name="emp_to" class="filter p-3 col-3">
                     <option value="None">Employees (To)</option>
                     {% for i in employee_to %}
                     <option value="{{ i }}">{{ i }}</option>
@@ -79,7 +82,7 @@
         </div>
 
         <br>
-        <button id="queryBtn" class="mt-5 btn btn-primary p-3 col-3 disabled" type="submit">
+        <button id="queryBtn" class="mt-5 btn btn-primary p-3 col-3" type="submit">
             Query Date
         </button>
         <button class="mt-5 mx-5 btn btn-secondary p-3 col-2" type="reset">

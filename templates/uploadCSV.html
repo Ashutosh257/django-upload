@@ -24,7 +24,7 @@
         <label for="csvFile">Select a CSV file:</label>
         {% csrf_token %}
         <input type="text" placeholder="Select File"> 
-        <input type="file" id="csvFile" name="file" accept=".csv" > 
+        <input type="file" id="csvFile" name="file" accept=".csv" required> 
 
         <br>
 

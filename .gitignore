@@ -10,6 +10,7 @@
 */migrations/*
 */__pycache__/*
 
+staticfiles/*
 media/*
 
 Pipfile.lock
